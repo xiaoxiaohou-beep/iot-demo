@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IoT 实时仪表盘</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>IoT 实时仪表盘</h1>
+      <p class="subtitle">publisher.js → MQTT → Express → SSE</p>
+    </div>
+    <div class="badges">
+      <span class="badge idle" id="mqttBadge"><i class="dot"></i><span id="mqttState">MQTT 连接中</span></span>
+      <span class="badge idle" id="streamBadge"><i class="dot"></i><span id="streamState">推送连接中</span></span>
+    </div>
+  </header>
+
+  <main>
+    <section class="cards">
+      <article class="card">
+        <h2>当前温度</h2>
+        <p class="value temp" id="tempValue">—</p>
+        <p class="meta">单位：℃</p>
+      </article>
+      <article class="card">
+        <h2>当前湿度</h2>
+        <p class="value humidity" id="humidityValue">—</p>
+        <p class="meta">单位：%</p>
+      </article>
+      <article class="card">
+        <h2>最后更新</h2>
+        <p class="value time" id="updatedValue">—</p>
+        <p class="meta" id="deviceMeta">设备：—</p>
+      </article>
+    </section>
+
+    <p class="hint" id="brokerHint">Broker 未连接，等待数据…</p>
+
+    <section class="card charts">
+      <h2>实时曲线（最近 120 点）</h2>
+      <div class="chart-grid">
+        <figure>
+          <figcaption>温度 <span class="legend temp">℃</span></figcaption>
+          <canvas id="tempChart"></canvas>
+        </figure>
+        <figure>
+          <figcaption>湿度 <span class="legend humidity">%</span></figcaption>
+          <canvas id="humidityChart"></canvas>
+        </figure>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>最近数据</h2>
+      <p class="meta" id="topicMeta">Topic：—</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>时间</th>
+              <th>设备</th>
+              <th>温度(℃)</th>
+              <th>湿度(%)</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,13 +1,14 @@
 {
   "name": "iot-demo",
   "version": "1.0.0",
- 
   "scripts": {
     "pub": "node publisher.js",
-    "sub": "node subscriber.js"
+    "sub": "node subscriber.js",
+    "web": "node server.js"
   },
   "dependencies": {
-    "dotenv": "^16.0.0",
-    "mqtt": "^5.0.0"
+    "dotenv": "^18.0.8",
+    "express": "^4.22.3",
+    "mqtt": "^5.16.1"
   }
 }
